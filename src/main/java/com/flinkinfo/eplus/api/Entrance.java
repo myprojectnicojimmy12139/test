@@ -37,7 +37,7 @@ public class Entrance
 
     @ResponseBody
     @RequestMapping(
-        value = "/api",
+        value = "/",
         method = RequestMethod.POST,
         consumes = "application/json",
         produces = "application/json"

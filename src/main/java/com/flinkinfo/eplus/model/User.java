@@ -8,34 +8,72 @@ import java.util.List;
 
 public class User implements Serializable
 {
+    @JSONField(name = "id")
+    private int id;
+
     @JSONField(name = "name")
     private String name;
 
-    @JSONField(name = "age")
-    private int age;
+    @JSONField(name = "gender")
+    private String gender;
 
-    @JSONField(name = "show_messages")
-    List<String> messages;
+    @JSONField(name = "mobile")
+    private String mobile;
 
-    public User(String name, int age, List<String> messages)
+    @JSONField(name = "email")
+    private String email;
+
+    @JSONField(name = "address")
+    private String address;
+
+    @JSONField(name = "header_image")
+    List<String> headerImage;
+
+    @JSONField(name = "summary")
+    private String summary;
+
+
+    public User(int id , String name , String gender , String mobile , String email , String address , List<String> headerImage , String summary)
     {
+        this.id = id;
         this.name = name;
-        this.age = age;
-        this.messages = messages;
+        this.gender = gender;
+        this.mobile = mobile;
+        this.email = email;
+        this.address = address;
+        this.headerImage = headerImage;
+        this.summary = summary;
     }
 
-    public String getName()
-    {
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
         return name;
     }
 
-    public int getAge()
-    {
-        return age;
+    public String getGender() {
+        return gender;
     }
 
-    public List<String> getMessages()
-    {
-        return messages;
+    public String getMobile() {
+        return mobile;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public List<String> getHeaderImage() {
+        return headerImage;
+    }
+
+    public String getSummary() {
+        return summary;
     }
 }
