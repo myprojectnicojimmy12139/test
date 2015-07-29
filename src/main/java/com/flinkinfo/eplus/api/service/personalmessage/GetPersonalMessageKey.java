@@ -14,7 +14,7 @@ public class GetPersonalMessageKey implements ServiceHandler
 {
     @Override
     public String supportServiceName() {
-        return "personnal_message.personal_reply_list_key";
+        return "personal_message.personal_reply_list_key";
     }
 
     @Override

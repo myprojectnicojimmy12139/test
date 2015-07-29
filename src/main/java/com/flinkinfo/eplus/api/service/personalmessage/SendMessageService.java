@@ -13,7 +13,7 @@ public class SendMessageService implements ServiceHandler
     @Override
     public String supportServiceName()
     {
-        return "personnal_message.send";
+        return "personal_message.send";
     }
 
     @Override

@@ -30,12 +30,12 @@ public class LoginService implements ServiceHandler
         {
             if(password != null)
             {
-                User user = new User(1234,"Jimmy","男",subject,"523160615@qq.com","广州市越秀区",new ArrayList<String>(){
+                User user = new User(1234,"Jimmy","男","nico","fulin","boss","10086","afoehwoaf@163.com",new ArrayList<String>(){
                     {
                         add("www.baidu.com");
                         add("www.sina.com");
                     }
-                },"这是一个简介");
+                });
 
                 response.setStatus(Response.STATUS_SUCCESS);
                 response.setContent(new HashMap<String, Object>()

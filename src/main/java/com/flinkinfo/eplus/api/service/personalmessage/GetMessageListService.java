@@ -21,7 +21,7 @@ public class GetMessageListService implements ServiceHandler
     @Override
     public String supportServiceName()
     {
-        return "personnal_message.msg_list";
+        return "personal_message.msg_list";
     }
 
     @Override
@@ -29,7 +29,11 @@ public class GetMessageListService implements ServiceHandler
     {
         Response response = new Response();
         Map<String, Object> params = request.getParams();
-        Long userId = (Long) params.get("user_id");
+        int userId = (Integer) params.get("user_id");
+        if ((Integer) params.get("user_id") == null)
+        {
+
+        }
         int page;
         if(params.get("page") != null)
         {
@@ -42,12 +46,12 @@ public class GetMessageListService implements ServiceHandler
 
         ArrayList<PersonalMessage> personalMessages = new ArrayList<>();
 
-        user = new User(1234,"Jimmy","男","15902078327","523160615@qq.com","广州市越秀区",new ArrayList<String>(){
+        user = new User(1234,"Jimmy","男","nico","fulin","boss","10086","afoehwoaf@163.com",new ArrayList<String>(){
             {
                 add("www.baidu.com");
                 add("www.sina.com");
             }
-        },"这是一个简介");
+        });
 
         for (int i = 0; i < 10 ; i ++)
         {
@@ -55,7 +59,7 @@ public class GetMessageListService implements ServiceHandler
             personalMessages.add(personalMessage);
         }
 
-        if(userId != null && page != -1)
+        if(userId==1  && page != -1)
         {
             response.setStatus(Response.STATUS_SUCCESS);
             response.setContent(new HashMap<String, Object>()

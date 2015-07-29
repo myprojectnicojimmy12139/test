@@ -17,32 +17,37 @@ public class User implements Serializable
     @JSONField(name = "gender")
     private String gender;
 
+    @JSONField(name = "english_name")
+    private String english_name;
+
+    @JSONField(name = "institutions")
+    private String institutions;
+
+    @JSONField(name = "position")
+    private String position;
+
     @JSONField(name = "mobile")
     private String mobile;
 
     @JSONField(name = "email")
     private String email;
 
-    @JSONField(name = "address")
-    private String address;
-
     @JSONField(name = "header_image")
     List<String> headerImage;
 
-    @JSONField(name = "summary")
-    private String summary;
 
-
-    public User(int id , String name , String gender , String mobile , String email , String address , List<String> headerImage , String summary)
+    public User(int id , String name , String gender,String english_name,
+                String institutions, String position,String mobile,String email,List<String> headerImage)
     {
         this.id = id;
         this.name = name;
         this.gender = gender;
+        this.english_name = english_name;
+        this.institutions = institutions;
+        this.position = position;
         this.mobile = mobile;
         this.email = email;
-        this.address = address;
         this.headerImage = headerImage;
-        this.summary = summary;
     }
 
     public int getId() {
@@ -57,6 +62,18 @@ public class User implements Serializable
         return gender;
     }
 
+    public String getEnglish_name() {
+        return english_name;
+    }
+
+    public String getInstitutions() {
+        return institutions;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
     public String getMobile() {
         return mobile;
     }
@@ -65,15 +82,7 @@ public class User implements Serializable
         return email;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
     public List<String> getHeaderImage() {
         return headerImage;
-    }
-
-    public String getSummary() {
-        return summary;
     }
 }

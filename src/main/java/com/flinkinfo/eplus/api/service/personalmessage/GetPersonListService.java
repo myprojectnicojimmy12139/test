@@ -22,7 +22,7 @@ public class GetPersonListService implements ServiceHandler
     @Override
     public String supportServiceName()
     {
-        return "personnal_message.contacts";
+        return "personal_message.contacts";
     }
 
     @Override
@@ -39,12 +39,12 @@ public class GetPersonListService implements ServiceHandler
         {
             for(int i = 0;i < 10 ; i++)
             {
-                user = new User(i,"Jimmy","男","15902078327","523160615@qq.com","广州市越秀区",new ArrayList<String>(){
+                 user = new User(1234,"Jimmy","男","nico","fulin","boss","10086","afoehwoaf@163.com",new ArrayList<String>(){
                     {
                         add("www.baidu.com");
                         add("www.sina.com");
                     }
-                },"这是一个简介");
+                });
                 users.add(user);
             }
             response.setStatus(Response.STATUS_SUCCESS);

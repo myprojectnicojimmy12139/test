@@ -20,6 +20,7 @@ import java.util.Map;
  */
 @Component
 public class ProductService implements ServiceHandler {
+    int totalPage =1;
 
     @Override
     public String supportServiceName() {
@@ -59,6 +60,7 @@ public class ProductService implements ServiceHandler {
 
         //不是服务分类
         if (category_id == -1) {
+            totalPage = 5;
             //排列方式
             switch (arrange) {
                 case 0:
@@ -81,11 +83,19 @@ public class ProductService implements ServiceHandler {
                     break;
             }
         } else {//服务分类
-            for (int i = 0; i < products.size(); i++) {
-                if (products.get(i).getCategory().getId() == category_id) {
-                    responseProducts.add(products.get(i));
-                }
+            totalPage = 1;
+            for (int i = 0, j = category_id; i < 5; i++) {
+                Category category = new Category(category_id, "服务" + category_id);
+                Product product = new Product(j, "xx服务" + j,5, "这就是一个5万元的服务", "http://img3.3lian.com/2013/9/11/d/81.jpg", category);
+                responseProducts.add(product);
+                j=j+10;
             }
+
+//            for (int i = 0; i < products.size(); i++) {
+//                if (products.get(i).getCategory().getId() == category_id) {
+//                    responseProducts.add(products.get(i));
+//                }
+//            }
         }
 
         Response response = new Response();
@@ -93,8 +103,8 @@ public class ProductService implements ServiceHandler {
 
         response.setContent(new HashMap<String, Object>() {
             {
-                put("service", responseProducts);
-                put("totalPage",5);
+                put("products", responseProducts);
+                put("totalPage", totalPage);
             }
         });
         return response;
