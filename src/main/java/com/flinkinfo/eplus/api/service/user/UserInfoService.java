@@ -33,20 +33,19 @@ public class UserInfoService implements ServiceHandler {
 
         //假数据
         List<UserInfo> userInfos = new ArrayList<>();
-        for(int i=0;i<=user_id;i++)
+        for(int i=0;i<=(user_id%100);i++)
         {
             UserInfo userInfo = new UserInfo(i+1,i+2,i+4,i);
             userInfos.add(userInfo);
         }
 
+        UserInfo userInfo = new UserInfo(1,2,4,2);
         //返回参数
         Response response = new Response();
         response.setStatus(Response.STATUS_SUCCESS);
         response.setContent(new HashMap<String, Object>() {
             {
-                put("unread_message", userInfos.get(user_id).getUnreadMessage());
-                put("unread_system_inform_number", userInfos.get(user_id).getUnreadSystemInformNumber());
-                put("unread_service_inform_number", userInfos.get(user_id).getUnreadServiceInformNumber());
+                put("info",userInfo);
             }
         });
         return response;

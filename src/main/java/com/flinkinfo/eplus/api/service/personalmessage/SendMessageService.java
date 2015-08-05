@@ -22,10 +22,8 @@ public class SendMessageService implements ServiceHandler
         Response response = new Response();
         Map<String, Object> params = request.getParams();
         String content = (String) params.get("content");
-        Long receiverId = (Long) params.get("receiver_id");
-        Long senderId = (Long) params.get("sender_id");
 
-        if(content != null && receiverId != null && senderId != null)
+        if(content != null && (Integer) params.get("receiver_id") != null && (Integer) params.get("sender_id") != null)
         {
             response.setStatus(Response.STATUS_SUCCESS);
         }

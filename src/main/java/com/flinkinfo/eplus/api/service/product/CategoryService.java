@@ -11,8 +11,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
-/**获取分类筛选列表
- * Created on 15/7/27.
+/**
+ * 获取分类筛选列表
+ *
  * @author nico
  */
 @Component
@@ -28,8 +29,14 @@ public class CategoryService implements ServiceHandler
     public Response handle(Request request) throws Exception {
         //假数据
         List<Category> categories = new ArrayList<>();
-        for(int i=0;i<10;i++) {
-            Category category = new Category(i,"服务"+i);
+        String []categorylist = new String[]{
+                "法律服务","财税服务","审计服务",
+                "金融服务","调查服务","咨询服务",
+                "法律服务","财税服务","审计服务",
+                "金融服务","调查服务","咨询服务"
+        };
+        for(int i=0;i<categorylist.length;i++) {
+            Category category = new Category(i+1,categorylist[i]);
             categories.add(category);
         }
 
@@ -40,7 +47,7 @@ public class CategoryService implements ServiceHandler
         {
             {
                 put("categories",categories);
-                put("totalPage",5);
+                put("totalPage",1);
             }
         });
         return response;

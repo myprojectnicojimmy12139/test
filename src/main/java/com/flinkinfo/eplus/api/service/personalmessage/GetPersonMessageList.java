@@ -22,17 +22,15 @@ public class GetPersonMessageList implements ServiceHandler
     {
         Response response = new Response();
         Map<String, Object> params = request.getParams();
-        Long userId = (Long) params.get("user_id");
-        Long linkmanId = (Long) params.get("linkman_id");
         String secretKey = (String) params.get("secret_key");
 
-        if(userId != null && linkmanId != null && secretKey != null)
+        if((Integer) params.get("user_id") != null && (Integer) params.get("linkman_id") != null && secretKey != null)
         {
             response.setStatus(Response.STATUS_SUCCESS);
             response.setContent(new HashMap<String, Object>()
             {
                 {
-                    put("url", "http://www.163.com/");
+                    put("url", "http://www.baidu.com/");
                 }
             });
         }

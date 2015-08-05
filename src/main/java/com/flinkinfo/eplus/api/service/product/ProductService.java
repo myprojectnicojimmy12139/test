@@ -14,13 +14,12 @@ import java.util.Map;
 
 /**
  * 获取服务列表
- * Created on 15/7/27
  *
  * @author nico
  */
 @Component
 public class ProductService implements ServiceHandler {
-    int totalPage =1;
+    int totalPage = 1;
 
     @Override
     public String supportServiceName() {
@@ -35,31 +34,52 @@ public class ProductService implements ServiceHandler {
         //排列方式
         int arrange = 0;
         //服务类型
-        int category_id = -1;
+        int category_id = 0;
         //页数
         int page = (Integer) params.get("page");
-        if((Integer) params.get("arrange") != null)
-        {
+        if ((Integer) params.get("arrange") != null) {
             arrange = (Integer) params.get("arrange");
         }
-        if((Integer) params.get("category_id") != null) {
+        if ((Integer) params.get("category_id") != null) {
             category_id = (Integer) params.get("category_id");
         }
         //假数据
         List<Product> products = new ArrayList<>();
         List<Product> responseProducts = new ArrayList<>();
+        List<Category> categoryList = new ArrayList<>();
+        String[] categorylist = new String[]{
+                "法律服务", "财税服务", "审计服务",
+                "金融服务", "调查服务", "咨询服务",
+                "法律服务", "财税服务", "审计服务",
+                "金融服务", "调查服务", "咨询服务"
+        };
+        String[] imgurl = new String[]{
+                "http://img3.3lian.com/2013/9/11/d/81.jpg",
+                "http://img5.imgtn.bdimg.com/it/u=78434552,1564828281&fm=23&gp=0.jpg",
+                "http://img0.imgtn.bdimg.com/it/u=3015001919,2482592399&fm=21&gp=0.jpg",
+                "http://img3.3lian.com/2013/c4/14/d/11.jpg",
+                "http://img3.3lian.com/2013/9/11/d/81.jpg",
+                "http://img5.imgtn.bdimg.com/it/u=78434552,1564828281&fm=23&gp=0.jpg",
+                "http://img0.imgtn.bdimg.com/it/u=3015001919,2482592399&fm=21&gp=0.jpg",
+                "http://img3.3lian.com/2013/c4/14/d/11.jpg",
+                "http://img3.3lian.com/2013/9/11/d/81.jpg",
+                "http://img5.imgtn.bdimg.com/it/u=78434552,1564828281&fm=23&gp=0.jpg"
+        };
+        for (int i = 0; i < categorylist.length; i++) {
+            Category category = new Category(i + 1, categorylist[i]);
+            categoryList.add(category);
+        }
 
         //返回页数数据
         if (page != 0) {
-            for (int i = 10 * (page - 1), j = 0; i < 10 * page; i++, j++) {
-                Category category = new Category(j, "服务" + j);
-                Product service = new Product(i, "xx服务" + i,5, "这就是一个5万元的服务", "http://img3.3lian.com/2013/9/11/d/81.jpg", category);
-                products.add(service);
+            for (int i = 10 * (page - 1) + 1, j = 0; i <= 10 * page; i++, j++) {
+                Product product = new Product(i, "企业尽职调查服务" + i, "5" + i, "这就是一个5" + i + "万元的服务", imgurl[j], categoryList.get(j));
+                products.add(product);
             }
         }
 
-        //不是服务分类
-        if (category_id == -1) {
+        //服务分类为0
+        if (category_id == 0) {
             totalPage = 5;
             //排列方式
             switch (arrange) {
@@ -82,20 +102,43 @@ public class ProductService implements ServiceHandler {
                     }
                     break;
             }
-        } else {//服务分类
+        }
+        //服务分类不为0
+        else
+        {
+            //服务分类
             totalPage = 1;
-            for (int i = 0, j = category_id; i < 5; i++) {
-                Category category = new Category(category_id, "服务" + category_id);
-                Product product = new Product(j, "xx服务" + j,5, "这就是一个5万元的服务", "http://img3.3lian.com/2013/9/11/d/81.jpg", category);
-                responseProducts.add(product);
-                j=j+10;
+            List<Product> list = new ArrayList<>();
+            //服务分类的全部数据
+            for (int i = 0, j = category_id; i < 5; i++)
+            {
+                Product product = new Product(j, "企业尽职调查服务" + j, "5" + j, "这就是一个5" + j + "万元的服务",imgurl[category_id-1], categoryList.get(category_id - 1));
+                list.add(product);
+                j = j + 10;
             }
+            //排列方式
+            switch (arrange) {
+                //综合排序
+                case 0:
+                    for (int i = 0; i < 5; i++) {
+                        responseProducts.add(list.get(i));
+                    }
+                    break;
 
-//            for (int i = 0; i < products.size(); i++) {
-//                if (products.get(i).getCategory().getId() == category_id) {
-//                    responseProducts.add(products.get(i));
-//                }
-//            }
+                case 1:
+                    for (int i = list.size() - 1; i >= 0; i--) {
+                        responseProducts.add(list.get(i));
+                    }
+                    break;
+                case 2:
+                    for (int i = list.size() - 1; i >= list.size() / 2; i--) {
+                        responseProducts.add(list.get(i));
+                    }
+                    for (int i = 0; i < list.size() / 2; i++) {
+                        responseProducts.add(list.get(i));
+                    }
+                    break;
+            }
         }
 
         Response response = new Response();

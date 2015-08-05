@@ -19,7 +19,7 @@ public class GetVersionInfoService implements ServiceHandler {
     @Override
     public Response handle(Request request) throws Exception {
 
-        AppVersionInfo appVersionInfo = new AppVersionInfo("1.0","此版增加了新功能","www.baidu.com");
+        AppVersionInfo appVersionInfo = new AppVersionInfo("1.0","此版增加了新功能","http://www.baidu.com");
 
         Response response = new Response();
         response.setStatus(Response.STATUS_SUCCESS);

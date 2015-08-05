@@ -21,10 +21,7 @@ public class GetPersonalMessageKey implements ServiceHandler
     public Response handle(Request request) throws Exception {
         Response response = new Response();
         Map<String, Object> params = request.getParams();
-        Long userId = (Long) params.get("user_id");
-        Long linkmanId = (Long) params.get("linkman_id");
-
-        if(userId != null && linkmanId != null)
+        if((Integer) params.get("user_id") != null && (Integer) params.get("linkman_id") != null)
         {
             response.setStatus(Response.STATUS_SUCCESS);
             response.setContent(new HashMap<String, Object>()

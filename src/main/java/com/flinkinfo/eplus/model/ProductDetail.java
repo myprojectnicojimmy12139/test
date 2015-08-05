@@ -12,8 +12,8 @@ public class ProductDetail {
     private int id;
 
     //服务
-    @JSONField(name = "service")
-    private Product service;
+    @JSONField(name = "product")
+    private Product product;
 
     //服务介绍
     @JSONField(name = "introduce")
@@ -24,13 +24,13 @@ public class ProductDetail {
     private String area;
 
     //提供服务机构数量
-    @JSONField(name = "organizationNumber")
+    @JSONField(name = "organization_number")
     private int organization_number;
 
-    public ProductDetail(int id, Product service, String introduce, String area, int organization_number)
+    public ProductDetail(int id, Product product, String introduce, String area, int organization_number)
     {
         this.id = id;
-        this.service = service;
+        this.product = product;
         this.introduce = introduce;
         this.area = area;
         this.organization_number = organization_number;
@@ -40,8 +40,8 @@ public class ProductDetail {
         return id;
     }
 
-    public Product getService() {
-        return service;
+    public Product getProduct() {
+        return product;
     }
 
     public String getIntroduce() {

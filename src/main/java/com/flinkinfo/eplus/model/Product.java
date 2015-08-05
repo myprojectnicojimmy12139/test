@@ -19,7 +19,7 @@ public class Product {
 
     //参考价
     @JSONField(name = "indicative_price")
-    private double indicative_price;
+    private String indicative_price;
 
     //服务简介
     @JSONField(name = "summary")
@@ -33,7 +33,7 @@ public class Product {
     @JSONField(name = "category")
     private Category category;
 
-    public Product(int id, String name, double indicative_price, String summary, String image, Category category)
+    public Product(int id, String name, String indicative_price, String summary, String image, Category category)
     {
         this.id = id;
         this.name = name;
@@ -51,7 +51,7 @@ public class Product {
         return name;
     }
 
-    public double getIndicative_price() {
+    public String getIndicative_price() {
         return indicative_price;
     }
 

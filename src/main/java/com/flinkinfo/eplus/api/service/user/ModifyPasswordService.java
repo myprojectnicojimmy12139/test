@@ -22,11 +22,10 @@ public class ModifyPasswordService  implements ServiceHandler
     {
         Response response = new Response();
         Map<String, Object> params = request.getParams();
-        Long userId = (Long) params.get("user_id");
         String oldPassword = (String) params.get("old_password");
         String newPassword = (String) params.get("new_password");
 
-        if(userId != null && oldPassword != null && newPassword != null)
+        if((Integer) params.get("user_id") != null && oldPassword != null && newPassword != null)
         {
             response.setStatus(Response.STATUS_SUCCESS);
         }

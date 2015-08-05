@@ -11,7 +11,7 @@ public class AppVersionInfo
     @JSONField(name = "summary")
     private String summary;
 
-    @JSONField(name = "updateUrl")
+    @JSONField(name = "update_url")
     private String updateUrl;
 
     public AppVersionInfo(String version , String summary , String updateUrl)

@@ -4,6 +4,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 
 public class User implements Serializable
@@ -33,11 +34,11 @@ public class User implements Serializable
     private String email;
 
     @JSONField(name = "header_image")
-    List<String> headerImage;
+    Map<String,String> headerImage;
 
 
     public User(int id , String name , String gender,String english_name,
-                String institutions, String position,String mobile,String email,List<String> headerImage)
+                String institutions, String position,String mobile,String email,Map<String,String> headerImage)
     {
         this.id = id;
         this.name = name;
@@ -82,7 +83,7 @@ public class User implements Serializable
         return email;
     }
 
-    public List<String> getHeaderImage() {
+    public Map<String,String> getHeaderImage() {
         return headerImage;
     }
 }
